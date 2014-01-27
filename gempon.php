@@ -115,8 +115,7 @@ class Gempon {
     		'description'=>$description,
     		'format'=>$format,
     		'hash'=>$hash,
-    		'signed_request'=>$signed_request,
-    		'game_id'=>'tebak_gambar'
+    		'signed_request'=>$signed_request
 	    );
 			$result_curl = $this->native_curl_post($get_payment_url,$array_post);
 			return $result_curl;
@@ -135,12 +134,12 @@ class Gempon {
     	return $result_curl;
     }
 
-    function send_notification($username,$message,$gameid,$link = '',$format = 'json'){
+    function send_notification($username,$message,$link = '',$format = 'json'){
     	$notif_url = $this->base_api_url.'/notification/format/'.$format;
 	    $array_post = array(
+	    		'api_key'=>$this->api_key,
 	    		'userid'=>$username,
 	    		'message'=>$message,
-	    		'gameid'=>$gameid,
 	    		'link'=>$link,
 		    );
 			$result_curl = $this->native_curl_post($notif_url,$array_post);
